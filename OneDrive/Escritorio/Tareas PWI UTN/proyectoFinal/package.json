@@ -4,9 +4,10 @@
   "description": "Mi proyecto final para la cursada de UTN ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
-  "author": "GusChapa",
+  "author": "Gustavo Chaparro",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.2",
@@ -18,4 +19,5 @@
     "path": "^0.12.7",
     "session": "^0.1.0"
   }
+}
 }
