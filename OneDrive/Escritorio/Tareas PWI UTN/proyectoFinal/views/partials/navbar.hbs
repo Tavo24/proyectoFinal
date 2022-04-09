@@ -1,0 +1,46 @@
+
+<nav>
+    <div class="container-fluid">
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div>
+            <ul class="bar">
+            <li class="nav-item">
+                <a class="btn btn-outline-success" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-danger" href="https://www.instagram.com/dominodte/"target="_blank">Instagram</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-primary" href="https://www.facebook.com/dominodte/"target="_blank">Facebook</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-outline-dark" href="/productos">Productos</a>
+            </li>
+            {{#if isClient}}
+            <li class="nav-item">
+                <a class="btn btn-outline-info" href="/contacto">Contacto</a>
+            </li>
+            {{/if}}
+            {{#if isClient}}
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning" aria-current="page" href="/clientes">Cliente</a>
+                </li>
+            {{/if}}
+            {{#if isAdmin}}
+                <li class="nav-item">
+                    <a class="btn btn-outline-warning" aria-current="page" href="/administracion">Administrador</a>
+                </li>
+            {{/if}}
+            </ul>
+        </div>
+    </div>
+</nav>

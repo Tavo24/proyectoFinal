@@ -1,0 +1,52 @@
+<div class="container">
+    <h3 class="pad">Por favor, complete sus datos y luego haga click en enviar info</h3>
+    <div class="row2">
+        <form action="/register" method="post">
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Nombre completo</span>
+            <input type="text" name="nombCompleto" class="form-control fondo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Direccion</span>
+            <input type="text" name="direccion" class="form-control fondo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Localidad</span>
+            <input type="text" name="localidad" class="form-control fondo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Provincia</span>
+            <input type="text" name="provincia" class="form-control fondo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Telefono</span>
+            <input type="text" name="telefono" class="form-control fondo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">DNI</span>
+            <input type="text" name="dni" class="form-control fondo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Email</span>
+            <input type="email" name="email" class="form-control fondo" id="mail" placeholder="name@example.com" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Password</span>
+            <input type="password" name="pass" class="form-control fondo" id="password" name="password" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"required>
+            </div>
+            <p>No deje espacios en blanco</p>
+
+            <div class="mb-3 text-center">
+            <input type="submit" class="btn btn-outline-dark mb-3" value="Enviar Info">
+            </div>
+        </form>
+
+        <div class="text-center validacion">
+                <h2 class="text-danger">
+                    {{validacion}}
+                </h2>
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,102 @@
+<div class="container">
+    <table class="table table-striped" id="mytable">
+        <thead>
+            <tr>
+                <th> nombCompleto </th>
+                <th> direccion </th>
+                <th> localidad </th>
+                <th> provincia </th>
+                <th> telefono </th>
+                <th> dni </th>
+                <th> email </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each results}}
+                <tr>
+                    <td> {{ nombCompleto }}</td>
+                    <td> {{ direccion }}</td>
+                    <td> {{ localidad }}</td>
+                    <td> {{ provincia }}</td>
+                    <td> {{ telefono }}</td>
+                    <td> {{ dni }}</td>
+                    <td> {{ email }}</td>
+                    <td>
+                        <a href="javascript:void(0);" class="btn btn-info edit"  data-id="{{idCliente}}" data-nombcompleto="{{nombCompleto}}" data-direccion="{{direccion}}" data-localidad="{{localidad}}" data-provincia="{{provincia}}" data-telefono="{{telefono}}" data-dni="{{dni}}" data-email="{{email}}" >Editar</a>    
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<form action="/updatecliente" method="post">
+<div class="modal fade" id="EditModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> Editar Datos </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#my-modal2" aria-label="Close"></button>
+                </div>
+                    <div class="modal-body">
+                        <div class="form-group mt-3">
+                        <input type="text" name="cliente_nombCompleto" class="form-control" id="cliente_nombCompleto" placeholder="Nombre Completo" required>
+                        </div>
+                        <div class="form-group mt-3">
+                        <input type="text" name="cliente_direccion" class=" form-control" id="cliente_direccion" placeholder="direccion" required>
+                        </div>
+                        <div class="form-group mt-3">
+                        <input type="text" name="cliente_localidad" class=" form-control" id="cliente_localidad" placeholder="localidad" required>
+                        </div>
+                        <div class="form-group mt-3">
+                        <input type="text" name="cliente_provincia" class=" form-control" id="cliente_provincia" placeholder="cliente_provincia" required>
+                        </div>
+                        <div class="form-group mt-3">
+                        <input type="text" name="cliente_telefono" class=" form-control" id="cliente_telefono" placeholder="telefono" required>
+                        </div>
+                        <div class="form-group mt-3">
+                        <input type="text" name="cliente_dni" class=" form-control" id="cliente_dni" placeholder="dni" required>
+                        </div>
+                        <div class="form-group mt-3">
+                        <input type="text" name="cliente_email" class=" form-control" id="cliente_email" placeholder="email" required>
+                        </div>
+                        <div class="modal-footer mt-3">
+                        <input type="hidden" name="idCliente" id="idCliente">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#my-modal" aria-label="Close"></button>
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</form>
+
+<script src="/assets/js/jquery-3.3.1.js"></script>
+<script src="/assets/js/bootstrap.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function(){
+        //Mostrar datos al modal para editar registro
+        $('#mytable').on('click', '.edit', function(){
+            let idCliente = $(this).data('id');
+            let cliente_nombCompleto = $(this).data('nombcompleto');
+            let cliente_direccion = $(this).data('direccion');
+            let cliente_localidad = $(this).data('localidad');
+            let cliente_provincia = $(this).data('provincia');
+            let cliente_telefono = $(this).data('telefono');
+            let cliente_dni = $(this).data('dni');
+            let cliente_email = $(this).data('email');
+            $('#EditModal2').modal('show');
+            $('#idCliente').val(idCliente);
+            $('#cliente_nombCompleto').val(cliente_nombCompleto);
+            $('#cliente_direccion').val(cliente_direccion);
+            $('#cliente_localidad').val(cliente_localidad);
+            $('#cliente_provincia').val(cliente_provincia);
+            $('#cliente_telefono').val(cliente_telefono);
+            $('#cliente_dni').val(cliente_dni);
+            $('#cliente_email').val(cliente_email);
+        })
+
+    })
+</script>

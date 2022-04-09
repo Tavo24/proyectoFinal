@@ -1,0 +1,218 @@
+
+{{!-- Mostramos los Productos en la Tabla --}}
+<div class="container">
+    <div class="text-center m-5 titulolista">
+        <h2> Lista de Productos</h2>
+        <a href="javascript:void(0);" id="add" class="btn btn-info">Agregar</a>    
+    </div>
+    
+    <table class="table table-striped" id="mytable">
+        <thead>
+            <tr>
+                <th> Productos ID</th>
+                <th> nombProducto </th>
+                <th> imagen </th>
+                <th> color </th>
+                <th> stock </th>
+                <th> Acciones </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each results}}
+                <tr>
+                    <td> {{ idProducto }}</td>
+                    <td> {{ nombProducto }}</td>
+                    <td><img src="{{ imagen }}" height="50" /></td>
+                    <td> {{ color }}</td>
+                    <td> {{ stock }}</td>
+                    <td>
+                        <a href="javascript:void(0);" class="btn btn-info edit" data-id="{{idProducto}}" data-nombproducto="{{nombProducto}}" data-imagen="{{imagen}}" data-color="{{color}}" data-stock="{{stock}}">Editar</a>    
+                        <a href="javascript:void(0);" class="btn btn-danger delete" data-id="{{ idProducto}}">Borrar</a>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <hr/>
+    <div class="text-center m-5">
+        <h2> Listado de formularios </h2>
+    </div>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th> idFormulario </th>
+                <th> nombCompleto </th>
+                <th> email </th>
+                <th> tipo </th>
+                <th> mensaje </th>
+                <th> telefono </th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each formularios}}
+                <tr>
+                    <td> {{ idFormulario }} </td>
+                    <td> {{ nombCompleto }} </td>
+                    <td> {{ email }} </td>
+                    <td> {{ tipo }} </td>
+                    <td> {{ mensaje }} </td>
+                    <td> {{ telefono }} </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+
+{{!-- AÑADIR Modal --}}
+<form action="/productos" method="post">
+<div class="modal fade" id="AgregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"> Agregar Producto </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#AgregarModal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div class="form-group mt-3">
+                    <input type="text" name="producto_nombProducto" class="form-control" placeholder="Nombre Producto" required>
+                </div>
+
+                <div id="divInputLoad">
+                    <div id="divFileUpload">
+                    <input id="file-uploadAdd" name="producto_imagen"  type="file" accept="image/*" />
+                    </div>
+                    <input type="text" name="producto_color" class=" form-control"  placeholder="color" required>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="producto_stock" class=" form-control"  placeholder="stock" required>
+                </div>
+                <div class="modal-footer mt-3">
+                <input type="hidden" id="imagenBaseAdd" name="imagenBaseAdd" class="form-control" required>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-target="#AgregarModal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">crear</button>
+                </div>
+                </div>
+            </div>
+            </div>
+</div>
+</form>
+
+{{!-- /EDITAR  --}}
+
+<form action="/update" method="post">
+<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Editar Producto </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#my-modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group mt-3">
+                    <input type="text" name="producto_nombProducto" class="form-control" id="producto_nombProducto" placeholder="Nombre Producto" required>
+                </div>
+                <div class="form-group mt-3" id="divInputLoad">
+                    <div id="divFileUpload">
+                        <input id="file-upload" name="producto_imagen" type="file" accept="image/*" />
+                    </div>
+                    <div id="file-preview-zone"></div>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="producto_color" class=" form-control" id="producto_color" placeholder="color" required>
+                </div>
+                <div class="form-group mt-3">
+                    <input type="text" name="producto_stock" class=" form-control" id="producto_stock" placeholder="stock" required>
+                </div>
+            </div>
+            <div class="modal-footer mt-3">
+                <input type="hidden" name="idProducto" id="idProducto">
+                <input type="hidden" id="imagenBaseEdit" name="imagenBaseEdit" class="form-control" required>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" data-bs-target="#EditModal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+{{!-- Modal delete --}}
+        <form id="add-row-form" action="/delete" method="post">
+            <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="myModalLabel">Borrar Producto</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-target="#my-modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    <strong>¿Estás seguro de borrar este elemento?</strong>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" name="idProducto" class="form-control idProducto2" required>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-target="#DeleteModal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Eliminar</button>
+                    </div>
+                        </div>
+                </div>
+            </div>
+        </form>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script>
+    function readFile(input, modal) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var filePreview = document.createElement('img');
+            filePreview.id = 'file-preview';
+            //e.target.result contents the base64 data from the image uploaded
+            filePreview.src = e.target.result;
+            var previewZone = document.getElementById('file-preview-zone');
+            previewZone.appendChild(filePreview);
+            if(modal == 'edit'){
+                $('#imagenBaseEdit').val(e.target.result);
+            }else {
+                $('#imagenBaseAdd').val(e.target.result);
+            }
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    var fileUploadAdd = document.getElementById('file-uploadAdd');
+    var fileUpload = document.getElementById('file-upload');
+    fileUploadAdd.onchange = function (e) {
+        readFile(e.srcElement, 'add');
+    }
+    fileUpload.onchange = function (e) {
+        readFile(e.srcElement, 'edit');
+    }
+</script>
+<script>
+    $(document).ready(function(){
+        $('#add').click(function() {
+            $('#AgregarModal').modal('show');
+        })
+        //Mostrar datos al modal para editar registro
+        $('#mytable').on('click', '.edit', function(){
+            let idProducto = $(this).data('id');
+            let producto_nombProducto = $(this).data('nombproducto');
+            let producto_imagen = $(this).data('imagen');
+            let producto_color = $(this).data('color');
+            let producto_stock = $(this).data('stock');
+            $('#EditModal').modal('show');
+            $('#idProducto').val(idProducto);
+            $('#producto_nombProducto').val(producto_nombProducto);
+            $('#producto_color').val(producto_color);
+            $('#producto_stock').val(producto_stock);
+            $('#file-upload').val(producto_imagen);
+        })
+        // Modal DELETE     
+        $('#mytable').on('click', '.delete', function(){
+            let idProducto = $(this).data('id');
+            $('#DeleteModal').modal('show');
+            $('.idProducto2').val(idProducto);
+        })
+    })
+</script>

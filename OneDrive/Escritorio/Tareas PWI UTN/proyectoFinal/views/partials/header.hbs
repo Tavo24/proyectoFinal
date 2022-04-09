@@ -1,0 +1,41 @@
+
+
+<header class="container header">
+    <div class="flex-container p-3">
+        <div>
+            <a href="/">
+                <img src="/multimedia/logo domino.png" class="header_logo"/> 
+            </a>
+        </div>
+        <h1 class="titulo">Domino Indumentaria Perzonalizada</h1>
+        <!-- header_logo -->
+    </div>
+        
+        <div>
+            {{#if loggedIn}}
+                Bienvenido: {{mail}} <form action="/logout" method="post"><button class="btn btn-outline-dark mb-3 cerrar" type="submit">Cerrar sesión</button></form>
+            {{else}}
+            <form class="row g-3" action="/auth" method="post">
+                <div class="col-auto">
+                    <label for="imputEmail1" class="visually-hidden">Email address</label>
+                    <input type="email" name="mail" class="form-control" id="imputEmail1" placeholder="name@example.com">
+                </div>
+                <div class="col-auto">
+                    <label for="inputPassword2" class="visually-hidden">Password</label>
+                    <input type="password" name="password" class="form-control" id="inputPassword2" placeholder="Password">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-outline-dark mb-3">Login</button>
+                </div>
+                <div class="col-auto">
+                    <a class="btn btn-outline-dark mb-3" href="/registro">Registro</a>
+                </div>
+            </form>
+            {{/if}}
+            <div>
+                {{>navbar}}
+            </div>
+        </div>
+    </div>
+</header>
+

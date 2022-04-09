@@ -1,0 +1,38 @@
+
+<div class="container">
+    <h1 class="pad">{{titulo}}</h1>
+    <div class="row2">
+        <form action="/contacto" method="post">
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Nombre completo</span>
+            <input type="text" name="nombCompleto" class="form-control fondo" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            </div>
+            <div class="input-group input-group-sm mb-3">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Email</span>
+            <input type="email" name="email" id="mail" class="form-control fondo" placeholder="name@example.com" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" required>
+            </div>
+            <div class="input-group input-group-sm mb-3"">
+            <label class="btn btn-secondary" for="inputGroupSelect01">Encargue/Consulta</label>
+            <select class="form-select fondo" name="tipo" id="inputGroupSelect01" requiered>
+            <option selected>Elegir</option>
+            <option value="Encargue">Encargue</option>
+            <option value="Consulta">Consulta</option>
+            </select>
+            </div>
+            <div class="izq">
+            <span class="btn btn-secondary" id="inputGroup-sizing-sm">Su consulta:</span>
+            <textarea class="form-control text-center textarea" name="mensaje" id="exampleFormControlTextarea1" rows="4"></textarea>
+            </div>
+            <div class="mb-3 p-5">
+            <input type="submit" class="btn btn-outline-dark mb-3" value="Enviar Info">
+            </div>
+        </form>
+        <div class="text-center validacion">
+                <h2 class="text-danger">
+                    {{validacion}}
+                </h2>
+        </div>
+
+    </div>
+</div>
+
