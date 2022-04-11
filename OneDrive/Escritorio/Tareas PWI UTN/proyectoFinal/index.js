@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const Port = 3000 || 8080;
+const Port = process.env.PORT || 3000;
 const path = require('path');
 const hbs = require('hbs');
 const session = require('express-session');
@@ -14,6 +14,7 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false, limit:'50mb'}));
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -70,10 +71,10 @@ const createFirstUser = () => {
 createFirstUser();
 
 //Configuramos el Motor de Plantillas
-app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
-hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.use(express.static(path.join(__dirname, "public")));
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 app.post('/logout', function(request, response) {
     request.session.destroy()
