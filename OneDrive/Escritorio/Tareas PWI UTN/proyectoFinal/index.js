@@ -20,20 +20,38 @@ app.use(express.urlencoded({extended:false, limit:'50mb'}));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.set('views', path.join(__dirname, 'views'));
 
-const connection = mysql.createConnection({
+const dbConfig = {
 	host     : 'us-cdbr-east-05.cleardb.net',
 	user     : 'bd455b74f2792a',
     port: 3306,
 	password : '9852f9e2105a302',
-	database : 'heroku_dfe3ae3becb4086',
-});
+	database : 'heroku_dfe3ae3becb4086'
+}
 
-connection.connect(function(err) {
-    if(err){
-        return console.error("error: " + err.message);
+var connection;
+
+function handleDisconnect() {
+  connection = mysql.createConnection(dbConfig); // Recreate the connection, since
+                                                  // the old one cannot be reused.
+  connection.connect(function(err) {              // The server is either down
+    if(err) {                                     // or restarting (takes a while sometimes).
+      console.log('error when connecting to db:', err);
+      setTimeout(handleDisconnect, 2000); // We introduce a delay before attempting to reconnect,
+    }                                     // to avoid a hot loop, and to allow our node script to
+    console.log('conexion exitosa a la db');
+  });                                     // process asynchronous requests in the meantime.
+                                          // If you're also serving http, display a 503 error.
+  connection.on('error', function(err) {
+    console.log('db error', err);
+    if(err.code === 'PROTOCOL_CONNECTION_LOST') { // Connection to the MySQL server is usually
+      handleDisconnect();                         // lost due to either server restart, or a
+    } else {                                      // connnection idle timeout (the wait_timeout
+      throw err;                                  // server variable configures this)
     }
-console.log("Coneccion exitosa DB")
-});
+  });
+}
+
+handleDisconnect();
 
 const getHashedPassword = (password) => {
     const sha256 = crypto.createHash('sha256');
@@ -119,6 +137,7 @@ app.post('/auth', function(request, response) {
 		response.send('ingrese su email y password!');
 		response.end();
 	}
+
 });
 
 app.post('/register', function(request, response) {
@@ -161,6 +180,7 @@ app.post('/register', function(request, response) {
         response.send('Complete todos sus datos por favor!');
         response.end();
         }
+    
 });
 
 app.get('/', (req, res) =>{
@@ -202,6 +222,7 @@ app.get('/clientes', (req, res) =>{
                 isClient: req.session.isClient
             })
         }
+    
 });
 
 
@@ -238,6 +259,7 @@ app.get('/administracion', (req, res) => {
             isAdmin: req.session.isAdmin
         })
     }
+
 });
 
 app.get('/productos', (req, res) =>{
@@ -252,6 +274,7 @@ app.get('/productos', (req, res) =>{
             isAdmin: req.session.isAdmin
         });
         });
+    
 });
 
 app.post('/productos', function(request, response) {
@@ -356,6 +379,7 @@ app.post('/contacto', function(request, response) {
         response.send('Consulta enviada, gracias!');
         response.end();
         }
+    
 });
 
 app.listen(Port, () =>{
