@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const Port = 8080;
+const Port = 3000 || 8080;
 const path = require('path');
 const hbs = require('hbs');
 const session = require('express-session');
@@ -17,6 +17,7 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({extended:false, limit:'50mb'}));
 app.use(bodyParser.json({ limit: '50mb' }));
+app.set('views', path.join(__dirname, 'views'));
 
 const connection = mysql.createConnection({
 	host     : 'us-cdbr-east-05.cleardb.net',
