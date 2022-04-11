@@ -20,11 +20,13 @@ app.use(bodyParser.json({ limit: '50mb' }));
 
 const connection = mysql.createConnection({
 	host     : 'us-cdbr-east-05.cleardb.net',
-	user     : '55b74f2792a',
+	user     : 'bd455b74f2792a',
     port: 3306,
-	password : '1d11af1d',
+	password : '9852f9e2105a302',
 	database : 'heroku_dfe3ae3becb4086',
 });
+
+mysql://bd455b74f2792a:1d11af1d@us-cdbr-east-05.cleardb.net/heroku_dfe3ae3becb4086?reconnect=true
 
 connection.connect(function(err) {
     if(err){
