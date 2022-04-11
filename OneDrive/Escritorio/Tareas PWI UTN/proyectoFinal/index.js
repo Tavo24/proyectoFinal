@@ -19,11 +19,11 @@ app.use(express.urlencoded({extended:false, limit:'50mb'}));
 app.use(bodyParser.json({ limit: '50mb' }));
 
 const connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
+	host     : 'us-cdbr-east-05.cleardb.net',
+	user     : '55b74f2792a',
     port: 3306,
-	password : 'password',
-	database : 'domino',
+	password : '1d11af1d',
+	database : 'heroku_dfe3ae3becb4086',
 });
 
 connection.connect(function(err) {
