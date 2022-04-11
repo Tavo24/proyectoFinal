@@ -1,7 +1,7 @@
 
 const express = require('express');
 const app = express();
-const Port = 3000 || 8080;
+const Port = 8080;
 const path = require('path');
 const hbs = require('hbs');
 const session = require('express-session');
@@ -25,8 +25,6 @@ const connection = mysql.createConnection({
 	password : '9852f9e2105a302',
 	database : 'heroku_dfe3ae3becb4086',
 });
-
-mysql://bd455b74f2792a:1d11af1d@us-cdbr-east-05.cleardb.net/heroku_dfe3ae3becb4086?reconnect=true
 
 connection.connect(function(err) {
     if(err){
