@@ -256,7 +256,8 @@ app.get('/administracion', (req, res) => {
             titulo:'Bienvenidos!',
             loggedIn: req.session.loggedIn,
             mail: req.session.mail,
-            isAdmin: req.session.isAdmin
+            isAdmin: req.session.isAdmin,
+            isClient: req.session.isClient
         })
     }
 
@@ -271,7 +272,8 @@ app.get('/productos', (req, res) =>{
             results: results,
             loggedIn: req.session.loggedIn,
             mail: req.session.mail,
-            isAdmin: req.session.isAdmin
+            isAdmin: req.session.isAdmin,
+            isClient: req.session.isClient
         });
         });
     
