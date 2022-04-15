@@ -14,7 +14,7 @@ Temas aplicados:
    los 2 roles de usuarios pueden logearse y navegar por las paginas. El administrador puede realizar tareas especificas 
    y ver una pagina extra para leer consultas y subir sus productos(/administracion.).
 3) Bootstrap: use todo lo que se me ocurrio para enbellecer la web, botoneras, inputs, clases predeterminadas, breakpoints, etc.
-4) CSS: para terminar de perzonalizar lo realizado con bootstrap y/o dar retoques especificos.
+4) CSS: para terminar de personalizar lo realizado con bootstrap y/o dar retoques especificos.
 5) HTML: como use hbs como base y estructuracion. Solo en cada views le di el cuerpo que faltaba.
 
 La web permite/sirve para:
