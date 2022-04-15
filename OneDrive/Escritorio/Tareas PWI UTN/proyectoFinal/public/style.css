@@ -122,6 +122,9 @@ body{
         margin-top: 150px;
         text-align: left;
     }
+    .bar {
+        flex-direction: row;
+    }
 }
 @media (max-width : 768px){
     .text{
